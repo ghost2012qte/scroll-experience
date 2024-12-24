@@ -1,12 +1,15 @@
 @use '../../mixins' as mixin;
 
+$bobr-background: #891383;
+
 .bobr {
   height: 500vh;
+  background-color: $bobr-background;
 }
 
 .inner-bobr {
   height: 100vh;
-  background-color: #891383;
+  background-color: $bobr-background;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +18,7 @@
 #chika-video {
   width: 20vw;
   color-scheme: dark;
-  background-color: transparent; /* Ensure no default browser background */
+  background-color: transparent;
 }
 
 #mts {
