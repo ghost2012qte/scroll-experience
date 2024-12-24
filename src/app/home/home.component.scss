@@ -1,0 +1,86 @@
+@use '../../mixins' as mixin;
+
+.bobr {
+  height: 500vh;
+}
+
+.inner-bobr {
+  height: 100vh;
+  background-color: #800080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#chika-video {
+  width: 20vw;
+}
+
+#mts {
+  font-size: 8rem;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(-100%) translateY(-100%);
+  padding: 0 8px;
+  margin-right: 24px;
+  border-radius: 8px;
+  background-color: #fe0034;
+  will-change: transform, opacity;
+}
+
+#hueta {
+  font-size: 8rem;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+  transform: translateX(100%) translateY(100%);
+  will-change: transform, opacity;
+  @include mixin.text-stroke(5px, #000, 3px);
+}
+
+.zebra {
+  $zebra-background: #000;
+  height: 400vh;
+  background-color: $zebra-background;
+
+  &__inner {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: $zebra-background;
+    overflow: hidden;
+  }
+
+  &__img-wrapper {
+    border-radius: 50%;
+    border: 100px solid $zebra-background;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: width, height;
+  }
+
+  &__img {
+    display: block;
+    height: 50vh;
+    width: 50vh;
+    object-fit: cover;
+  }
+
+  &__message {
+    color: #fff;
+    font-size: 7rem;
+    position: absolute;
+    inset: 0;
+    transform: scale(0);
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+  }
+}

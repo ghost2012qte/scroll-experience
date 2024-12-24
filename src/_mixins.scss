@@ -1,0 +1,7 @@
+@mixin text-stroke($stroke: 2px, $color: black, $blur: 0px) {
+  text-shadow:
+    $stroke 0 $blur $color,
+    0 $stroke $blur $color,
+    (-$stroke) 0 $blur $color,
+    0 (-$stroke) $blur $color;
+}
