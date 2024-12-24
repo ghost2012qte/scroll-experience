@@ -26,22 +26,28 @@ export class HomeComponent implements OnInit {
     if (!video || !bobr || !innerBobr)
       throw new Error('initAnimations function failed to find the necessary elements');
 
+    let updateFn: ((self: globalThis.ScrollTrigger) => void) | null = null;
+
+    ScrollTrigger.create({
+      trigger: bobr,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: true,
+      pin: innerBobr,
+      onUpdate: (self) => {
+        if (updateFn) updateFn(self);
+      }
+    });
+
     video.addEventListener('loadedmetadata', () => {
       const totalFrames = 50;
       const frameDuration = video.duration / totalFrames;
 
-      ScrollTrigger.create({
-        trigger: bobr,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        pin: innerBobr,
-        onUpdate: (self) => {
-          const scrollProgress = self.progress;
-          const currentFrame = Math.floor(scrollProgress * totalFrames);
-          video.currentTime = currentFrame * frameDuration;
-        },
-      });
+      updateFn = (self) => {
+        const scrollProgress = self.progress;
+        const currentFrame = Math.floor(scrollProgress * totalFrames);
+        video.currentTime = currentFrame * frameDuration;
+      };
     });
 
     gsap.to(this.hostRef.nativeElement.querySelector('#mts'), {
